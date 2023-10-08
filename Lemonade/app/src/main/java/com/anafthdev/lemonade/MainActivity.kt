@@ -44,6 +44,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.anafthdev.lemonade.ui.theme.LemonadeTheme
 import kotlinx.coroutines.launch
@@ -162,13 +163,15 @@ fun LemonadeAppContent() {
                                 return@clickable
                             }
 
-                            lemonProgress = lemonProgress.next().also { nextLemonProgress ->
-                                // if next lemon progress is squeeze
-                                // update squeezeCount (randomly)
-                                if (nextLemonProgress == LemonProgress.Squeeze) {
-                                    squeezeCount = Random.nextInt(1, 5)
+                            lemonProgress = lemonProgress
+                                .next()
+                                .also { nextLemonProgress ->
+                                    // if next lemon progress is squeeze
+                                    // update squeezeCount (randomly)
+                                    if (nextLemonProgress == LemonProgress.Squeeze) {
+                                        squeezeCount = Random.nextInt(1, 5)
+                                    }
                                 }
-                            }
                         }
                 ) {
                     // animate image when imageResource has changed
@@ -199,3 +202,10 @@ fun LemonadeAppContent() {
     }
 }
 
+@Preview
+@Composable
+private fun LemonadeAppContentPreview() {
+    LemonadeTheme(darkTheme = false) {
+        LemonadeAppContent()
+    }
+}
