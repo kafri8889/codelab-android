@@ -138,6 +138,8 @@ fun LemonadeAppContent() {
                     modifier = Modifier
                         .fillMaxWidth(0.86f)
                         .aspectRatio(1f / 1f)
+                        // Why we use lambda graphicsLayer?
+                        // because to prevent multiple recomposition when animating
                         .graphicsLayer {
                             rotationY = rotateAnimatable.value
                             scaleX = scaleAnimatable.value
